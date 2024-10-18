@@ -7,6 +7,6 @@
  *
  * @author Dell
  */
-public class hola {
+public class jajaj {
     
 }
