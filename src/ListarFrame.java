@@ -19,51 +19,52 @@ import javax.swing.JTextArea;
  * @author Omar Romero
  */
 public class ListarFrame extends JFrame{
-    public ListarFrame(){
-         setSize(400, 400);
+  private Tigo tigo;
+
+    public ListarFrame(Tigo tigo) {
+        this.tigo = tigo;
+        setSize(400, 400);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JPanel opciones = new JPanel(new GridBagLayout());
         GridBagConstraints grid = new GridBagConstraints();
-
         grid.gridx = 0;
         grid.gridy = GridBagConstraints.RELATIVE;
-        
-        
-        JTextArea area=new JTextArea();
+
+        // Crear JTextArea para mostrar la lista de planes
+        JTextArea area = new JTextArea(10, 30); // Ajusta el tamaño como prefieras
         area.setEditable(false);
-        
-        //poner una funcion que obtenga el texto que se necesita poner
-        String text="";
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+
+        // Obtener el texto de la lista y establecerlo en el JTextArea
+        String text = tigo.lista();
         area.setText(text);
-        
+
+        // Crear JScrollPane y agregar JTextArea a él
         JScrollPane scrollPane = new JScrollPane(area);
-        JLabel datos= new JLabel("Planes agregados");
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
-        //agregar funcion o algo para que lo que esta en " " sea el numero de planes de cada uno
-        JLabel datosSam= new JLabel("Planes agregados");
-        JLabel datosIpho= new JLabel("Planes agregados");
-        opciones.add(datos,grid);
-        opciones.add(area,grid);
-        opciones.add(datosSam,grid);
-        opciones.add(datosIpho,grid);
-        JButton Volver = new JButton("Volver");
-        opciones.add(Volver,grid);
+        JLabel datos = new JLabel("Planes agregados:");
         
-        Volver.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        // Agregar componentes al panel
+        opciones.add(datos, grid);
+        opciones.add(scrollPane, grid); // Agregar el JScrollPane en lugar del JTextArea directamente
+        
+        JButton volver = new JButton("Volver");
+        opciones.add(volver, grid);
+        
+        volver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 dispose();
                 MenuFrame frame = new MenuFrame();
                 frame.setVisible(true);
             }
-            
-            
-            
         });
-        
-        add(opciones);
-                setVisible(true);
 
+        add(opciones);
+        setVisible(true);
     }
 }

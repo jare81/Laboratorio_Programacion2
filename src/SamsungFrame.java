@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -37,8 +38,12 @@ public class SamsungFrame extends JFrame{
         JTextField numerotelefono=new JTextField();
         numerotelefono.setPreferredSize(new Dimension(200, 30));
         
+        JTextField pin=new JTextField();
+        pin.setPreferredSize(new Dimension(200, 30));
+        
         JLabel namet=new JLabel("Nombre");
         JLabel numt=new JLabel("Numero de Telefono");
+        JLabel pint=new JLabel("Pin");
         
         JButton Crear = new JButton("Crear");
         JButton Volver = new JButton("Volver");
@@ -47,6 +52,9 @@ public class SamsungFrame extends JFrame{
         opciones.add(name, grid);
         opciones.add(numt, grid);
         opciones.add(numerotelefono, grid);
+        opciones.add(pin, grid);
+        opciones.add(pint, grid);
+        
         opciones.add(Crear, grid);
         opciones.add(Volver, grid);
 
@@ -67,11 +75,22 @@ public class SamsungFrame extends JFrame{
         //aca para crear plan samsung
         Crear.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                
-                //codigo para crear plan de samsun
-                
-                
-                
+              String nombre = name.getText(); 
+                String numero = numerotelefono.getText(); 
+                String pinText = pin.getText(); 
+
+                Tigo plan = new Tigo();
+
+                if (!nombre.isEmpty() && !numero.isEmpty() && !pinText.isEmpty()) {
+                    try {
+                        plan.agregarPlan(Integer.parseInt(numero), nombre, pinText, "SAMSUNG");
+                        JOptionPane.showMessageDialog(null, "Plan agregado con éxito");
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingrese un número de teléfono válido.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+                }
             }
             
             

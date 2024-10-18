@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class Tigo {
     
-    private ArrayList<Plan>planes;
+    public ArrayList<Plan>planes;
 
     public Tigo() {
          planes=new ArrayList<>();
@@ -50,7 +50,6 @@ public class Tigo {
 
             PlanSamsung nuevoSamsung = new PlanSamsung(extra, nombre, numeroTel);
             planes.add(nuevoSamsung);
-            JOptionPane.showMessageDialog(null, "Plan Samsung agregado exitosamente.");
             
         } else {
             

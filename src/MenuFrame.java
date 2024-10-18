@@ -9,8 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MenuFrame extends JFrame{
+    private Tigo tigo;
     
     public MenuFrame(){
+        tigo = new Tigo();
         setSize(400,400);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,7 +68,7 @@ public class MenuFrame extends JFrame{
         Listar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                ListarFrame frame = new ListarFrame();
+                ListarFrame frame = new ListarFrame(tigo);
                 frame.setVisible(true);
             }
             

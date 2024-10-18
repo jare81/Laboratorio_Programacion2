@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -72,21 +73,23 @@ public class IphoneFrame extends JFrame{
         //aca para crear plan iphone
         Crear.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                String nombre = namet.getText();
-                String numero = numt.getText();
-                String correo = correot.getText();
-                
+                String nombre = name.getText(); 
+                String numero = numerotelefono.getText(); 
+                String correoo = correo.getText(); 
+
                 Tigo plan = new Tigo();
-                
-                plan.
-                
-                
-              
-                
-                
-                
+
+                if(!nombre.isEmpty() && !numero.isEmpty() && !correoo.isEmpty()) {
+                    try {
+                        plan.agregarPlan(Integer.parseInt(numero), nombre, correoo, "IPHONE");
+                        JOptionPane.showMessageDialog(null, "Plan agregado con éxito");
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingrese un número de teléfono válido.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+                }
             }
-            
             
             
         });

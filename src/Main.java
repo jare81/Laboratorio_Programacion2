@@ -1,6 +1,7 @@
 
 
-public class Laboratorio_Programacion2 {
+public class Main {
+     
 
     public static void main(String[] args) {
         MenuFrame menu=new MenuFrame();
