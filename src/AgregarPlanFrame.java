@@ -16,8 +16,10 @@ import javax.swing.JPanel;
  * @author Omar Romero
  */
 public class AgregarPlanFrame extends JFrame {
+    private Tigo tigo;
 
-    public AgregarPlanFrame() {
+    public AgregarPlanFrame(Tigo tigo) {
+         this.tigo = tigo;
         setSize(400, 400);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -29,7 +31,7 @@ public class AgregarPlanFrame extends JFrame {
         grid.gridy = GridBagConstraints.RELATIVE;
 
         JButton Iphone = new JButton("Plan Iphone");
-        JButton Samsung = new JButton("Pago Samsung");
+        JButton Samsung = new JButton("Plan Samsung");
         JButton Volver = new JButton("Volver");
         opciones.add(Iphone, grid);
         opciones.add(Samsung, grid);
@@ -38,7 +40,7 @@ public class AgregarPlanFrame extends JFrame {
         Volver.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                MenuFrame frame = new MenuFrame();
+                MenuFrame frame = new MenuFrame(tigo);
                 frame.setVisible(true);
             }
             
@@ -49,7 +51,7 @@ public class AgregarPlanFrame extends JFrame {
         Iphone.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                IphoneFrame frame = new IphoneFrame();
+                IphoneFrame frame = new IphoneFrame(tigo);
                 frame.setVisible(true);
             }
             
@@ -60,7 +62,8 @@ public class AgregarPlanFrame extends JFrame {
         Samsung.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                SamsungFrame frame = new SamsungFrame();
+                
+                SamsungFrame frame = new SamsungFrame(tigo);
                 frame.setVisible(true);
             }
             

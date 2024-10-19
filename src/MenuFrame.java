@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 public class MenuFrame extends JFrame{
     private Tigo tigo;
     
-    public MenuFrame(){
-        tigo = new Tigo();
+    public MenuFrame(Tigo tigo){
+        this.tigo=tigo;
         setSize(400,400);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -35,7 +35,7 @@ public class MenuFrame extends JFrame{
         AgregarPlan.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                AgregarPlanFrame frame = new AgregarPlanFrame();
+                AgregarPlanFrame frame = new AgregarPlanFrame(tigo);
                 frame.setVisible(true);
             }
             
@@ -46,7 +46,7 @@ public class MenuFrame extends JFrame{
         PagoPlan.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                PagoPlanFrame frame=new PagoPlanFrame();
+                PagoPlanFrame frame=new PagoPlanFrame(tigo);
                 frame.setVisible(true);
             }
             
@@ -57,7 +57,7 @@ public class MenuFrame extends JFrame{
         AgregarAmigo.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                AmigoFrame frame = new AmigoFrame();
+                AmigoFrame frame = new AmigoFrame(tigo);
                 frame.setVisible(true);
             }
             

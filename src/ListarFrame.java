@@ -7,9 +7,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -33,33 +35,25 @@ public class ListarFrame extends JFrame{
         grid.gridy = GridBagConstraints.RELATIVE;
 
         // Crear JTextArea para mostrar la lista de planes
-        JTextArea area = new JTextArea(10, 30); // Ajusta el tamaño como prefieras
-        area.setEditable(false);
-        area.setLineWrap(true);
-        area.setWrapStyleWord(true);
+        JTextArea areaMensajes = new JTextArea(10, 30); // Ajusta el tamaño como prefieras
+        areaMensajes.setEditable(false);
+        areaMensajes.setLineWrap(true);
+        areaMensajes.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(areaMensajes);
 
-        // Obtener el texto de la lista y establecerlo en el JTextArea
-        String text = tigo.lista();
-        area.setText(text);
+         
+        areaMensajes.setText(tigo.lista());
 
-        // Crear JScrollPane y agregar JTextArea a él
-        JScrollPane scrollPane = new JScrollPane(area);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        
-        JLabel datos = new JLabel("Planes agregados:");
-        
-        // Agregar componentes al panel
-        opciones.add(datos, grid);
-        opciones.add(scrollPane, grid); // Agregar el JScrollPane en lugar del JTextArea directamente
+        opciones.add(scrollPane, grid);
+
         
         JButton volver = new JButton("Volver");
         opciones.add(volver, grid);
         
         volver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                MenuFrame frame = new MenuFrame();
+                dispose(); 
+                MenuFrame frame = new MenuFrame(tigo);  
                 frame.setVisible(true);
             }
         });
@@ -67,4 +61,5 @@ public class ListarFrame extends JFrame{
         add(opciones);
         setVisible(true);
     }
+    
 }

@@ -37,7 +37,7 @@ public abstract class  Plan {
     public abstract double pagoMensual(int mins, int msgs);
     
     public String imprimir(){
-        return "Nombre Cliente " + nombreClien + "Numero Telefono " + numeroTel + " " ;
+        return "\nNombre Cliente: " + nombreClien + "\nNumero Telefono: " + numeroTel  ;
     }
     
 }

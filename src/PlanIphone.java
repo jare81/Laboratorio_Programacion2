@@ -22,7 +22,7 @@ public class PlanIphone extends Plan {
     }
     
     public String imprimir(){
-        return super.imprimir() + "Email " + email;
+        return super.imprimir() + "\nEmail: " + email;
     }
 
     public String getEmail() {

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class Tigo {
     
-    public ArrayList<Plan>planes;
+    private ArrayList<Plan>planes;
 
     public Tigo() {
          planes=new ArrayList<>();
@@ -50,6 +50,7 @@ public class Tigo {
 
             PlanSamsung nuevoSamsung = new PlanSamsung(extra, nombre, numeroTel);
             planes.add(nuevoSamsung);
+            JOptionPane.showMessageDialog(null, "Plan Samsung agregado exitosamente.");
             
         } else {
             
@@ -96,16 +97,20 @@ public class Tigo {
 }
     
 public void agregarAmigo(int numeroTel, String pin){
-    for (Plan plan : planes) {
+     boolean encontrado = false;  
 
-            if (plan.getNumeroTel() == numeroTel && plan instanceof PlanSamsung) {
-                PlanSamsung samsung = (PlanSamsung) plan;  
-                samsung.agregarPinAmigo(pin);
-            }else{
-                JOptionPane.showMessageDialog(null, "no se agrego");
-            }
-           
+    for (Plan plan : planes) {
+        if (plan.getNumeroTel() == numeroTel && plan instanceof PlanSamsung) {
+            PlanSamsung samsung = (PlanSamsung) plan;
+            samsung.agregarPinAmigo(pin);
+            encontrado = true;  
+            break; 
         }
+    }
+
+    if (!encontrado) {
+        JOptionPane.showMessageDialog(null, "El número no existe o no es usuario Samsung.");
+    }
 }
 
 public String lista(){
@@ -125,14 +130,25 @@ public String lista(){
         }
     }
     
-    sb.append("Planes Samsung: ").append(contSam).append("\n");
-    sb.append("Planes Iphone: ").append(contIph).append("\n");
+    sb.append("\n\nPLANES SAMSUNG: ").append(contSam).append("\n");
+    sb.append("PLANES IPHONE: ").append(contIph).append("\n");
     
     return sb.toString();
     
+    
 }
 
+    }
 
-}
+
+
+
+
+
+
+
+
+
+
     
 

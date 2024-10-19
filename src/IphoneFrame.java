@@ -20,8 +20,10 @@ import javax.swing.JTextField;
  * @author Omar Romero
  */
 public class IphoneFrame extends JFrame{
+    private Tigo tigo;
     
-    public IphoneFrame(){
+    public IphoneFrame(Tigo tigo){
+        this.tigo=tigo;
         setSize(400, 400);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,7 +64,7 @@ public class IphoneFrame extends JFrame{
         Volver.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                AgregarPlanFrame frame = new AgregarPlanFrame();
+                AgregarPlanFrame frame = new AgregarPlanFrame(tigo);
                 frame.setVisible(true);
             }
             
@@ -77,12 +79,10 @@ public class IphoneFrame extends JFrame{
                 String numero = numerotelefono.getText(); 
                 String correoo = correo.getText(); 
 
-                Tigo plan = new Tigo();
 
                 if(!nombre.isEmpty() && !numero.isEmpty() && !correoo.isEmpty()) {
                     try {
-                        plan.agregarPlan(Integer.parseInt(numero), nombre, correoo, "IPHONE");
-                        JOptionPane.showMessageDialog(null, "Plan agregado con éxito");
+                        tigo.agregarPlan(Integer.parseInt(numero), nombre, correoo, "IPHONE");
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Por favor, ingrese un número de teléfono válido.");
                     }

@@ -20,8 +20,10 @@ import javax.swing.JTextField;
  * @author Omar Romero
  */
 public class SamsungFrame extends JFrame{
+    private Tigo tigo;
     
-    public SamsungFrame(){
+    public SamsungFrame(Tigo tigo){
+        this.tigo=tigo;
         setSize(400, 400);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,8 +54,8 @@ public class SamsungFrame extends JFrame{
         opciones.add(name, grid);
         opciones.add(numt, grid);
         opciones.add(numerotelefono, grid);
-        opciones.add(pin, grid);
         opciones.add(pint, grid);
+        opciones.add(pin, grid);
         
         opciones.add(Crear, grid);
         opciones.add(Volver, grid);
@@ -64,7 +66,7 @@ public class SamsungFrame extends JFrame{
         Volver.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                AgregarPlanFrame frame = new AgregarPlanFrame();
+                AgregarPlanFrame frame = new AgregarPlanFrame(tigo);
                 frame.setVisible(true);
             }
             
@@ -79,12 +81,10 @@ public class SamsungFrame extends JFrame{
                 String numero = numerotelefono.getText(); 
                 String pinText = pin.getText(); 
 
-                Tigo plan = new Tigo();
-
                 if (!nombre.isEmpty() && !numero.isEmpty() && !pinText.isEmpty()) {
                     try {
-                        plan.agregarPlan(Integer.parseInt(numero), nombre, pinText, "SAMSUNG");
-                        JOptionPane.showMessageDialog(null, "Plan agregado con éxito");
+                        tigo.agregarPlan(Integer.parseInt(numero), nombre, pinText, "SAMSUNG");
+                        
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Por favor, ingrese un número de teléfono válido.");
                     }

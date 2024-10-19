@@ -19,8 +19,9 @@ import javax.swing.JTextField;
  * @author Omar Romero
  */
 public class AmigoFrame extends JFrame{
-    
-    public AmigoFrame(){
+    private Tigo tigo;
+    public AmigoFrame(Tigo tigo){
+        this.tigo=tigo;
         setSize(400, 400);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -33,13 +34,20 @@ public class AmigoFrame extends JFrame{
         JTextField numerotelefono=new JTextField();
         numerotelefono.setPreferredSize(new Dimension(200, 30));
         
+        JTextField pinT=new JTextField();
+        pinT.setPreferredSize(new Dimension(200, 30));
+        
         JLabel numerot=new JLabel("Que numero deseas agregar como amigo?");
+        JLabel pint=new JLabel("Cual es el pin?");
         
         JButton Crear = new JButton("Agregar");
         JButton Volver = new JButton("Volver");
         
         opciones.add(numerot, grid);
         opciones.add(numerotelefono, grid);
+        opciones.add(pint, grid);
+        opciones.add(pinT, grid);
+        
         opciones.add(Crear, grid);
         opciones.add(Volver, grid);
 
@@ -49,7 +57,7 @@ public class AmigoFrame extends JFrame{
         Volver.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
-                MenuFrame frame = new MenuFrame();
+                MenuFrame frame = new MenuFrame(tigo);
                 frame.setVisible(true);
             }
             
@@ -61,8 +69,10 @@ public class AmigoFrame extends JFrame{
         Crear.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 
-                //codigo para agregar amigo
+                String pin =pinT.getText();
+                String tel =numerotelefono.getText();
                 
+                tigo.agregarAmigo(Integer.parseInt(tel), pin);
                 
                 
             }

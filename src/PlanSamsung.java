@@ -37,7 +37,7 @@ public class PlanSamsung extends Plan {
     }
     
     public String imprimir(){
-        return super.imprimir() + "Pin " + pin;
+        return super.imprimir() + "\nPin: " + pin;
     }
     
      public void agregarPinAmigo(String pinAmigo) {
@@ -45,8 +45,19 @@ public class PlanSamsung extends Plan {
             bbm.add(pinAmigo);
             JOptionPane.showMessageDialog(null, "El PIN " + pinAmigo + " ha sido agregado.");
         } else {
-            JOptionPane.showMessageDialog(null, "El PIN " + pinAmigo + " ya está en la lista.");
+            JOptionPane.showMessageDialog(null, "El PIN " + pinAmigo + " ya esta en la lista.");
         }
+    }
+     
+     public String listarAmigos() {
+        if (bbm.isEmpty()) {
+            return "No tiene amigos agregados.";
+        }
+        StringBuilder sb = new StringBuilder("Amigos BBM:\n");
+        for (String amigo : bbm) {
+            sb.append(amigo).append("\n");
+        }
+        return sb.toString();
     }
      
      public String getPin(){
