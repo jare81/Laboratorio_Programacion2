@@ -34,8 +34,7 @@ public class ListarFrame extends JFrame{
         grid.gridx = 0;
         grid.gridy = GridBagConstraints.RELATIVE;
 
-        // Crear JTextArea para mostrar la lista de planes
-        JTextArea areaMensajes = new JTextArea(10, 30); // Ajusta el tamaño como prefieras
+        JTextArea areaMensajes = new JTextArea(10, 30);
         areaMensajes.setEditable(false);
         areaMensajes.setLineWrap(true);
         areaMensajes.setWrapStyleWord(true);
